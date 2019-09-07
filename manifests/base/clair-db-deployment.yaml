@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: clair-db 
+  name: clair-db
+  namespace: clair-inspect
+spec:
+  replicas: 1
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      app: clair-db 
+  template:
+    metadata:
+      labels:
+        app: clair-db
+    spec:
+      containers:
+        - image: arminc/clair-db
+          imagePullPolicy: Always
+          name: clair-db 
+          resources: {}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status: {}

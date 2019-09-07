@@ -1,0 +1,9 @@
+bases:
+  - ../../base
+resources:
+  # - gke-cluster-admin.yaml
+  - certs-claim.yaml
+  - traefik-ingress-service.yaml
+  # - traefik-ingress.yaml
+patches:
+  - traefik-ingress-controller-deployment.yaml

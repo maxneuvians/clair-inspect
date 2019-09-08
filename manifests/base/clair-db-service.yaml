@@ -8,8 +8,8 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: 6012
-      targetPort: 6012
+    - port: 5432
+      targetPort: 5432
   selector:
     app: clair-db
 

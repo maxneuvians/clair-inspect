@@ -1,0 +1,19 @@
+
+steps:  
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-t',
+        'gcr.io/$PROJECT_ID/clair:abcd',
+        '-t',
+        'gcr.io/$PROJECT_ID/clair:latest',
+        '-f',
+        'clair/Dockerfile',
+        '.',
+      ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/clair:abcd']
+images:
+  - 'gcr.io/$PROJECT_ID/clair:abcd'
+  - 'gcr.io/$PROJECT_ID/clair:latest'

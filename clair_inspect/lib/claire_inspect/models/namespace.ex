@@ -5,8 +5,8 @@ defmodule ClairInspect.Models.Namespace do
     field :name, :string
     field :version_format, :string
 
-    has_many :features, ClairInspect.Models.Features, foreign_key: :namespace_id
-    has_many :vulnerabilities, ClairInspect.Models.Vulnerabilities, foreign_key: :namespace_id
+    has_many :features, ClairInspect.Models.Feature, foreign_key: :namespace_id
+    has_many :vulnerabilities, ClairInspect.Models.Vulnerability, foreign_key: :namespace_id
   end
 
 end

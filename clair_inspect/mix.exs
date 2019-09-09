@@ -47,6 +47,7 @@ defmodule ClairInspect.MixProject do
       {:hackney, "~> 1.14.0"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
+      {:exprotobuf, "~> 1.2"},
       {:tesla, "~> 1.2.1"}
     ]
   end

@@ -5,6 +5,8 @@ defmodule ClairInspectWeb.Schema do
   import_types ClairInspectWeb.Schema.Features
   import_types ClairInspectWeb.Schema.Layers
   import_types ClairInspectWeb.Schema.Namespaces
+  import_types ClairInspectWeb.Schema.Registries
+  import_types ClairInspectWeb.Schema.Repositories
   import_types ClairInspectWeb.Schema.Vulnerabilities
 
   alias ClairInspectWeb.Resolvers
@@ -32,6 +34,11 @@ defmodule ClairInspectWeb.Schema do
     field :layer, :layer do
       arg :id, non_null(:id)
       resolve &Resolvers.Layers.find_layer_by_id/3
+    end
+
+    @desc "Get registry"
+    field :registry, :registry do
+      resolve &Resolvers.Registries.get/3
     end
 
     @desc "Get a vulnerability by id"

@@ -1,15 +1,10 @@
 defmodule ClairInspect.Docker do
+  @registry "https://gcr.io"
 
   def catalog() do
     client()
     |> login("registry:catalog:*")
     |> get("/v2/_catalog")
-  end
-
-  def blob(repository, digest) do
-    client()
-    |> login("repository:" <> repository <> ":*")
-    |> get("/v2/" <> repository <> "/blobs/" <> digest)
   end
 
   # Returns the layer URLs from newest to oldest
@@ -30,9 +25,17 @@ defmodule ClairInspect.Docker do
     |> Jason.decode!()
   end
 
+  def registry(), do: @registry
+
+  defp blob(repository, digest) do
+    client()
+    |> login("repository:" <> repository <> ":*")
+    |> get("/v2/" <> repository <> "/blobs/" <> digest)
+  end
+
   defp client do
     middleware = [
-      {Tesla.Middleware.BaseUrl, "https://gcr.io"},
+      {Tesla.Middleware.BaseUrl, @registry},
       Tesla.Middleware.JSON,
       {Tesla.Middleware.Headers, [{"authorization", "Basic " <> get_basic_token() }]}
     ]

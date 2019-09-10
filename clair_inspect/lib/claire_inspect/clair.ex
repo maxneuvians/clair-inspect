@@ -4,7 +4,15 @@ defmodule ClairInspect.Clair do
   plug Tesla.Middleware.BaseUrl, "http://localhost:6060"
   plug Tesla.Middleware.JSON
 
-  def add_layer(url, parent \\ "") do
+  def add_layers(repo, layers) when is_list(layers) do
+    layers
+    |> Enum.reverse()
+    |> Enum.reduce("", fn layer, parent ->
+      add_layer(repo, layer, parent)
+    end)
+  end
+
+  defp add_layer(repo, url, parent \\ "") do
     name =
       url
       |> String.split("?")
@@ -12,6 +20,7 @@ defmodule ClairInspect.Clair do
       |> String.split("/")
       |> Enum.reverse()
       |> hd()
+      |> Kernel.<>(":#{repo}")
 
     data = %{
       "Layer": %{
@@ -22,5 +31,6 @@ defmodule ClairInspect.Clair do
       }
     }
     post("/v1/layers", Jason.encode!(data))
+    name
   end
 end

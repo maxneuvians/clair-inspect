@@ -1,0 +1,14 @@
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for repository <- @repositories do %>
+      <tr>
+        <td><%= repository %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

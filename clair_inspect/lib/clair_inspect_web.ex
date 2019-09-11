@@ -24,6 +24,7 @@ defmodule ClairInspectWeb do
       import Plug.Conn
       import ClairInspectWeb.Gettext
       alias ClairInspectWeb.Router.Helpers, as: Routes
+      import Phoenix.LiveView.Controller, only: [live_render: 3]
     end
   end
 
@@ -31,7 +32,8 @@ defmodule ClairInspectWeb do
     quote do
       use Phoenix.View,
         root: "lib/clair_inspect_web/templates",
-        namespace: ClairInspectWeb
+        namespace: ClairInspectWeb,
+        pattern: "**/*"
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 1, get_flash: 2, view_module: 1]
@@ -42,6 +44,7 @@ defmodule ClairInspectWeb do
       import ClairInspectWeb.ErrorHelpers
       import ClairInspectWeb.Gettext
       alias ClairInspectWeb.Router.Helpers, as: Routes
+      import Phoenix.LiveView, only: [live_render: 2, live_render: 3, live_link: 1, live_link: 2]
     end
   end
 
@@ -50,6 +53,7 @@ defmodule ClairInspectWeb do
       use Phoenix.Router
       import Plug.Conn
       import Phoenix.Controller
+      import Phoenix.LiveView.Router
     end
   end
 

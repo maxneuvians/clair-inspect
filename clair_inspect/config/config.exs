@@ -15,12 +15,17 @@ config :clair_inspect, ClairInspectWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "CnRat9oQJ+MRGIHXs4Fnv7CJeFO6GmfhHFBsVJtC5p6sUo9+ACFuAatKcNZ9y+U8",
   render_errors: [view: ClairInspectWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: ClairInspect.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: ClairInspect.PubSub, adapter: Phoenix.PubSub.PG2],
+  live_view: [
+    signing_salt: "CnRat9oQJ+MRGIHXs4Fnv7CJeFO6GmfhHFBsVJtC5p6sUo9+ACFuAatKcNZ9y+U8"
+  ]
 
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
+
+
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
